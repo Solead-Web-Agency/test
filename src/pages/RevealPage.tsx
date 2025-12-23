@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Home, RefreshCw } from "lucide-react";
 import Snowfall from "@/components/Snowfall";
 import Confetti from "@/components/Confetti";
-import { SECRET_WORD, FINAL_MESSAGE } from "@/data/riddles";
+import { SECRET_WORD, FINAL_MESSAGE, FINAL_MESSAGE_2 } from "@/data/riddles";
 
 const RevealPage = () => {
   const navigate = useNavigate();
@@ -78,10 +78,13 @@ const RevealPage = () => {
           {showMessage && (
             <div className="space-y-6 animate-fade-in">
               <div className="bg-card/90 backdrop-blur-sm rounded-2xl p-8 sm:p-12 border-2 border-accent golden-glow max-w-2xl mx-auto">
-                <p className="text-2xl sm:text-3xl font-christmas text-foreground leading-relaxed">
-                  {FINAL_MESSAGE}
-                </p>
-                <p className="text-6xl mt-6">🎁🏖️🎄</p>
+                    <p className="text-2xl sm:text-3xl font-christmas text-foreground leading-relaxed">
+                    {FINAL_MESSAGE}
+                    </p><br />
+                    <p className="text-2xl sm:text-3xl font-christmas text-foreground leading-relaxed">
+                    {FINAL_MESSAGE_2}
+                    </p>
+                <p className="text-6xl mt-6">🎄</p>
               </div>
               
               {/* Action buttons */}

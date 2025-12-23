@@ -59,5 +59,6 @@ export interface Riddle {
   ];
   
   export const SECRET_WORD = "CABOURG";
-  export const FINAL_MESSAGE = "Joyeux Noël ! On vous offre un séjour à Cabourg/Deauville !";
+  export const FINAL_MESSAGE = "🎁 Joyeux Noël ! 🎁";
+  export const FINAL_MESSAGE_2 = "Je vous offre un séjour à Cabourg ou Deauville !";
   

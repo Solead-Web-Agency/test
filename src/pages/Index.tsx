@@ -34,7 +34,7 @@ const Index = () => {
             </h1>
             
             <p className="text-xl sm:text-2xl text-foreground/80 font-serif">
-              Un cadeau spécial vous attend...
+              Papa, Maman, un cadeau vous attend...
             </p>
           </div>
           
