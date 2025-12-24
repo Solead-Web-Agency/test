@@ -14,6 +14,13 @@ interface RiddleCardProps {
   onSolved: (letter: string) => void;
 }
 
+// Fonction pour supprimer les accents d'une chaîne
+const removeAccents = (str: string): string => {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+};
+
 const RiddleCard = ({
   riddleNumber,
   totalRiddles,
@@ -30,8 +37,8 @@ const RiddleCard = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    const normalizedAnswer = answer.toLowerCase().trim();
-    const normalizedCorrect = correctAnswer.toLowerCase().trim();
+    const normalizedAnswer = removeAccents(answer.toLowerCase().trim());
+    const normalizedCorrect = removeAccents(correctAnswer.toLowerCase().trim());
     
     if (normalizedAnswer === normalizedCorrect) {
       setSolved(true);

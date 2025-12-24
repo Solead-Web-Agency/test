@@ -84,7 +84,13 @@ const RevealPage = () => {
                     <p className="text-2xl sm:text-3xl font-christmas text-foreground leading-relaxed">
                     {FINAL_MESSAGE_2}
                     </p>
-                <p className="text-6xl mt-6">🎄</p>
+                <div className="mt-6 flex justify-center">
+                  <img 
+                    src="/casino-de-cabourg-cote.jpg" 
+                    alt="Vue de Cabourg" 
+                    className="max-w-full h-auto rounded-lg shadow-lg"
+                  />
+                </div>
               </div>
               
               {/* Action buttons */}
