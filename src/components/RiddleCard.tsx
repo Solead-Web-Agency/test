@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Gift, Sparkles } from "lucide-react";
+import { Gift, Sparkles, Lightbulb } from "lucide-react";
 
 interface RiddleCardProps {
   riddleNumber: number;
@@ -33,6 +33,7 @@ const RiddleCard = ({
   const [answer, setAnswer] = useState("");
   const [error, setError] = useState(false);
   const [solved, setSolved] = useState(false);
+  const [showHint, setShowHint] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,9 +76,26 @@ const RiddleCard = ({
         </div>
         
         {hint && (
-          <p className="text-sm text-muted-foreground text-center">
-            💡 Indice : {hint}
-          </p>
+          <div className="space-y-2">
+            {!showHint ? (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowHint(true)}
+                className="w-full"
+              >
+                <Lightbulb className="w-4 h-4 mr-2" />
+                Voir l'indice
+              </Button>
+            ) : (
+              <div className="p-4 bg-accent/10 rounded-lg border border-accent/20">
+                <p className="text-sm text-muted-foreground text-center flex items-center justify-center gap-2">
+                  <Lightbulb className="w-4 h-4 text-accent" />
+                  <span>💡 Indice : {hint}</span>
+                </p>
+              </div>
+            )}
+          </div>
         )}
         
         {solved ? (

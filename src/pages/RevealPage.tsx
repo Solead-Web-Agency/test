@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, RefreshCw } from "lucide-react";
+import { Home, RefreshCw, Volume2, VolumeX } from "lucide-react";
 import Snowfall from "@/components/Snowfall";
 import Confetti from "@/components/Confetti";
 import { SECRET_WORD, FINAL_MESSAGE, FINAL_MESSAGE_2 } from "@/data/riddles";
+import { useAudio } from "@/contexts/AudioContext";
 
 const RevealPage = () => {
   const navigate = useNavigate();
+  const { isPlaying, toggleAudio } = useAudio();
   const [showConfetti, setShowConfetti] = useState(false);
   const [revealedLetters, setRevealedLetters] = useState<boolean[]>(
     Array(SECRET_WORD.length).fill(false)
@@ -47,6 +49,19 @@ const RevealPage = () => {
     <div className="min-h-screen christmas-bg relative overflow-hidden">
       <Snowfall />
       {showConfetti && <Confetti />}
+      
+      {/* Audio control button */}
+      <button
+        onClick={toggleAudio}
+        className="absolute top-4 right-4 z-20 p-2 rounded-full bg-card/80 backdrop-blur-sm border border-border hover:bg-card transition-colors"
+        aria-label={isPlaying ? "Couper le son" : "Activer le son"}
+      >
+        {isPlaying ? (
+          <Volume2 className="w-5 h-5 text-foreground" />
+        ) : (
+          <VolumeX className="w-5 h-5 text-foreground" />
+        )}
+      </button>
       
       <div className="relative z-10 container mx-auto px-4 py-12 flex flex-col items-center justify-center min-h-screen">
         <div className="text-center space-y-12">

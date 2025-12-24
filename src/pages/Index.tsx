@@ -1,14 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Gift, Sparkles, TreePine } from "lucide-react";
+import { Gift, Sparkles, TreePine, Volume2, VolumeX } from "lucide-react";
 import Snowfall from "@/components/Snowfall";
+import { useAudio } from "@/contexts/AudioContext";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { isPlaying, startAudio, toggleAudio } = useAudio();
+
+  const handleStartAdventure = () => {
+    startAudio();
+    navigate("/riddle/1");
+  };
 
   return (
     <div className="min-h-screen christmas-bg relative overflow-hidden">
       <Snowfall />
+      
+      {/* Audio control button */}
+      <button
+        onClick={toggleAudio}
+        className="absolute top-4 right-4 z-20 p-2 rounded-full bg-card/80 backdrop-blur-sm border border-border hover:bg-card transition-colors"
+        aria-label={isPlaying ? "Couper le son" : "Activer le son"}
+      >
+        {isPlaying ? (
+          <Volume2 className="w-5 h-5 text-foreground" />
+        ) : (
+          <VolumeX className="w-5 h-5 text-foreground" />
+        )}
+      </button>
       
       <div className="relative z-10 container mx-auto px-4 py-12 flex flex-col items-center justify-center min-h-screen">
         {/* Decorative elements */}
@@ -61,7 +81,7 @@ const Index = () => {
           
           {/* CTA Button */}
           <Button
-            onClick={() => navigate("/riddle/1")}
+            onClick={handleStartAdventure}
             size="lg"
             className="text-xl px-8 py-6 font-christmas golden-glow hover:scale-105 transition-transform"
           >

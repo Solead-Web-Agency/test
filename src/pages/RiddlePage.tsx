@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Volume2, VolumeX } from "lucide-react";
 import Snowfall from "@/components/Snowfall";
 import ProgressLetters from "@/components/ProgressLetters";
 import RiddleCard from "@/components/RiddleCard";
 import { riddles, SECRET_WORD } from "@/data/riddles";
+import { useAudio } from "@/contexts/AudioContext";
 
 const RiddlePage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const riddleId = parseInt(id || "1");
+  const { isPlaying, toggleAudio } = useAudio();
   
   const [foundLetters, setFoundLetters] = useState<string[]>(() => {
     const saved = localStorage.getItem("foundLetters");
@@ -79,6 +81,19 @@ const RiddlePage = () => {
   return (
     <div className="min-h-screen christmas-bg relative overflow-hidden">
       <Snowfall />
+      
+      {/* Audio control button */}
+      <button
+        onClick={toggleAudio}
+        className="absolute top-4 right-4 z-20 p-2 rounded-full bg-card/80 backdrop-blur-sm border border-border hover:bg-card transition-colors"
+        aria-label={isPlaying ? "Couper le son" : "Activer le son"}
+      >
+        {isPlaying ? (
+          <Volume2 className="w-5 h-5 text-foreground" />
+        ) : (
+          <VolumeX className="w-5 h-5 text-foreground" />
+        )}
+      </button>
       
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Navigation */}
